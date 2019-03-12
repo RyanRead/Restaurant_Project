@@ -1,0 +1,17 @@
+<html> 
+<body style="color:white; background-color:powderblue">
+
+<p> What is your Chef Login Credentials </p>
+
+<form action = "chef_page.html" method = "post"> <!-- need to change for authentication -->
+<label>What is your username?:</label>
+<input type = "text" name = "username" class = "box"/><br /><br />
+
+<label>What is your Password?:</label>
+<input type = "password" name = "password" class = "box"/><br /><br />
+<input type = "submit" value = " Submit "/><br />
+</form>
+
+</body>
+
+</html>
