@@ -51,7 +51,7 @@ else
 	}
 	if ($insert_successful)
 	{
-		echo "<br><strong> YOU HAVE ORDERED: </strong><br><br>";
+		echo "<br><strong> You Have Successfully Ordered: </strong><br><br>";
 		$query = "SELECT item_name FROM menu_items NATURAL JOIN order_items WHERE order_id =".$order_id; 
 		$order_results = $conn->query($query);
 		$rows = $order_results->num_rows;
@@ -68,6 +68,14 @@ else
 
 
 ?>
-
+	
+<form action ="select_section.php">
+<button type = "submit">Click Here To Make Another Order</button>
+</form>
+<br>
+<form action ="server_homepage.html">
+<button type = "submit">Click Here To Return To  The Server Homepage</button>
+</form>	
+	
 </body>
 </html>
