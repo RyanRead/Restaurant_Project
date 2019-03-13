@@ -21,7 +21,7 @@ if ($conn->connect_error)
 
 $query = "SELECT order_id FROM orders WHERE order_complete = false";
 $menu_item_results = $conn->query($query);
-$rows = $menu_item_results->num_rows;
+$rows = $orders_results->num_rows;
 
 echo <<<_END
 <form action = "view_items_inorder.php" method ="post">
