@@ -25,7 +25,11 @@ $insert_order_results = $conn->query($query);
 if (!$insert_order_results) 
 	echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
 else
-	$order_id = $insert_order_results->insert_id;
+	$query = "SELECT LAST_INSERT_ID()";
+	$order_id_results = $conn->query($query);
+	$order_id_results->data_seek(1);
+	$order_id = $order_id_results->fetch_array(MYSQLI_NUM);
+	$order_id = $order_id[0];
 	//echo "Order ID: ".$order_id[0];
 	
 	
