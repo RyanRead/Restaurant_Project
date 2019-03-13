@@ -28,7 +28,7 @@ if ($conn->connect_error)
 $order_id = $_POST["order_id"];
 if (isset($_POST["item_id"]))
 {
-	$query = "UPDATE ordered_items SET order_complete = true WHERE order_id =" . $order_id "AND item_id = " . $_POST["item_id"];
+	$query = "UPDATE ordered_items SET order_complete = true WHERE order_id =" . $order_id . "AND item_id = " . $_POST["item_id"];
 	$insert_order_complete = $conn->query($query);
 	if (!$insert_order_complete) 
 	{
