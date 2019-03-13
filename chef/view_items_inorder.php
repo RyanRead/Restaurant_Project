@@ -29,11 +29,11 @@ $order_id = $_POST["order_id"];
 if (isset($_POST["item_complete"]))
 {
 	$query = "SELECT item_complete FROM ordered_items WHERE item_compelte = false AND order_id = " . $order_id;
-	$item_compelte_results = query $conn->query($query);
+	$item_compelte_results = $conn->query($query);
 	$count = $item_compelte_results->num_rows;
 	if (count == 0)
 	{
-		echo "<strong> This order is complete </strong>"
+		echo "<strong> This order is complete </strong>";
 		// add part about making the orders say ready to be server
 		$query = "UPDATE orders SET order_complete = true WHERE order_id =" . $order_id;
 		$insert_order_complete = $conn->query($query);
@@ -55,7 +55,8 @@ else
 
 // This function displays all the ordered items if there are still items to be displayed
 function displayOrderedItems($conn) {
-$query = "SELECT item_id, item_name, item_complete FROM menu_items NATURAL JOIN order_items WHERE order_id = " . $_POST["$order_id"];
+$query = "SELECT item_id, item_name, item_complete FROM menu_items NATURAL JOIN ordered_items WHERE order_id = " . $_POST["order_id"];
+//echo $query;
 $ordered_item_results = $conn->query($query);
 $rows = $ordered_item_results->num_rows;
 
@@ -68,7 +69,7 @@ echo <<<_END
 </tr>
 _END;
 
-for ($j = 0; j < $rows; ++$j)
+for ($j = 0; $j < $rows; ++$j)
 {
 	$ordered_item_results->data_seek($j);
 	$ordered_item_row = $ordered_item_results -> fetch_array(MYSQLI_NUM);
@@ -79,7 +80,7 @@ echo <<<_END
 	<tr>
 	<td> $item_name </td> 
 _END;
-	if ($complete = true) 
+	if ($complete == true) 
 	{	
 echo <<<_END
 		<td style="color:Green">Item Complete</td>	
@@ -95,7 +96,7 @@ _END;
 }
 echo <<<_END
 </table>
-<input type ="hidden" name="order_id" value="$order_id">
+<input type ="hidden" name="order_id" value="order_id">
 </form>
 _END;
 }
