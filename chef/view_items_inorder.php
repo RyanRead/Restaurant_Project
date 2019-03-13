@@ -28,7 +28,8 @@ if ($conn->connect_error)
 $order_id = $_POST["order_id"];
 if (isset($_POST["item_id"]))
 {
-	$query = "UPDATE ordered_items SET order_complete = true WHERE order_id =" . $order_id . " AND item_id = " . $_POST["item_id"];
+	$item_id = $_POST["item_id"];
+	$query = "UPDATE ordered_items SET order_complete = true WHERE order_id =" . $order_id . " AND item_id = " . $item_id;
 	$insert_order_complete = $conn->query($query);
 	if (!$insert_order_complete) 
 	{
@@ -50,17 +51,17 @@ if (isset($_POST["item_id"]))
 	}
 	else
 	{
-		displayOrderedItems($conn);
+		displayOrderedItems($conn, $item_id, $order_id);
 	}
 }
 else
 {
-	displayOrderedItems($conn);
+	displayOrderedItems($conn, $item_id, $order_id);
 }
 
 
 // This function displays all the ordered items if there are still items to be displayed
-function displayOrderedItems($conn) {
+function displayOrderedItems($conn, $item_id, $order_id) {
 $query = "SELECT item_id, item_name, item_complete FROM menu_items NATURAL JOIN ordered_items WHERE order_id = " . $_POST["order_id"];
 //echo $query;
 $ordered_item_results = $conn->query($query);
