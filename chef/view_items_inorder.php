@@ -36,7 +36,7 @@ if (isset($_POST["item_id"]))
 	{
 		echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
 	}
-	$query = "SELECT item_complete FROM ordered_items WHERE item_compelte = false AND order_id = " . $order_id;
+	$query = "SELECT item_complete FROM ordered_items WHERE item_complete = false AND order_id = " . $order_id;
 	echo $query;
 	$item_compelte_results = $conn->query($query);
 	$count = $item_compelte_results->num_rows;
