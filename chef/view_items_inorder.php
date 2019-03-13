@@ -26,7 +26,7 @@ if ($conn->connect_error)
 } 
 
 $order_id = $_POST["order_id"];
-if (isset($_POST["item_complete"])
+if (isset($_POST["item_complete"]))
 {
 	$query = "SELECT item_complete FROM ordered_items WHERE item_compelte = false AND order_id = " . $order_id;
 	$item_compelte_results = query $conn->query($query);
