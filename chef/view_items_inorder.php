@@ -26,8 +26,9 @@ if ($conn->connect_error)
 } 
 
 $order_id = $_POST["order_id"];
-if (isset($_POST["item_complete"]))
+if (isset($_POST["item_item"]))
 {
+	echo "stufff"
 	$query = "UPDATE ordered_items SET order_complete = true WHERE order_id =" . $order_id;
 	$insert_order_complete = $conn->query($query);
 	if (!$insert_order_complete) 
