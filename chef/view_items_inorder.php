@@ -29,35 +29,34 @@ $order_id = $_POST["order_id"];
 if (isset($_POST["item_complete"]))
 {
 	$query = "SELECT item_complete FROM ordered_items WHERE item_compelte = false AND order_id = " . $order_id;
-	$item_compelte_results = $conn->query($query);
+	$item_compelte_results = query $conn->query($query);
 	$count = $item_compelte_results->num_rows;
 	if (count == 0)
 	{
-		echo << "<strong> This order is complete </strong>"
+		echo "<strong> This order is complete </strong>"
 		// add part about making the orders say ready to be server
 		$query = "UPDATE orders SET order_complete = true WHERE order_id =" . $order_id;
 		$insert_order_complete = $conn->query($query);
 		if (!$insert_order_complete) 
 		{
 			echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
-			break;
 		}
 	}
 	else
 	{
-		displayOrderedItems();
+		displayOrderedItems($conn);
 	}
 }
 else
 {
-	displayOrderedItems();
+	displayOrderedItems($conn);
 }
 
 
 // This function displays all the ordered items if there are still items to be displayed
-function displayOrderedItems() {
+function displayOrderedItems($conn) {
 $query = "SELECT item_id, item_name, item_complete FROM menu_items NATURAL JOIN order_items WHERE order_id = " . $_POST["$order_id"];
-$ordered_item_results = query $conn->query($query);
+$ordered_item_results = $conn->query($query);
 $rows = $ordered_item_results->num_rows;
 
 echo <<<_END
