@@ -51,12 +51,12 @@ if (isset($_POST["item_id"]))
 	}
 	else
 	{
-		displayOrderedItems($conn, $_POST["item_id"], $order_id);
+		displayOrderedItems($conn, $order_id);
 	}
 }
 else
 {
-	displayOrderedItems($conn, $_POST["item_id"], $order_id);
+	displayOrderedItems($conn, $order_id);
 }
 
 
@@ -80,7 +80,7 @@ for ($j = 0; $j < $rows; ++$j)
 {
 	$ordered_item_results->data_seek($j);
 	$ordered_item_row = $ordered_item_results -> fetch_array(MYSQLI_NUM);
-	
+	$item_id =  = $ordered_item_row[0];
 	$item_name = $ordered_item_row[1];
 	$complete = $ordered_item_row[2];
 echo <<<_END
