@@ -28,6 +28,12 @@ if ($conn->connect_error)
 $order_id = $_POST["order_id"];
 if (isset($_POST["item_complete"]))
 {
+	$query = "UPDATE ordered_items SET order_complete = true WHERE order_id =" . $order_id;
+	$insert_order_complete = $conn->query($query);
+	if (!$insert_order_complete) 
+	{
+		echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
+	}
 	$query = "SELECT item_complete FROM ordered_items WHERE item_compelte = false AND order_id = " . $order_id;
 	$item_compelte_results = $conn->query($query);
 	$count = $item_compelte_results->num_rows;
