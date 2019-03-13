@@ -51,12 +51,12 @@ if (isset($_POST["item_id"]))
 	}
 	else
 	{
-		displayOrderedItems($conn, $item_id, $order_id);
+		displayOrderedItems($conn, $_POST["item_id"], $order_id);
 	}
 }
 else
 {
-	displayOrderedItems($conn, $item_id, $order_id);
+	displayOrderedItems($conn, $_POST["item_id"], $order_id);
 }
 
 
