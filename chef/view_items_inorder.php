@@ -61,7 +61,7 @@ else
 
 
 // This function displays all the ordered items if there are still items to be displayed
-function displayOrderedItems($conn, $item_id, $order_id) {
+function displayOrderedItems($conn, $order_id) {
 $query = "SELECT item_id, item_name, item_complete FROM menu_items NATURAL JOIN ordered_items WHERE order_id = " . $_POST["order_id"];
 //echo $query;
 $ordered_item_results = $conn->query($query);
