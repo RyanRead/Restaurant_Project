@@ -40,7 +40,7 @@ if (isset($_POST["item_id"]))
 	echo $query;
 	$item_compelte_results = $conn->query($query);
 	$count = $item_compelte_results->num_rows;
-	if (count == 0)
+	if ($count == 0)
 	{
 		echo "<strong> This order is complete </strong>";
 		// add part about making the orders say ready to be server
