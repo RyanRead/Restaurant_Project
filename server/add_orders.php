@@ -73,7 +73,7 @@ else
 <button type = "submit">Make Another Order</button>
 </form>
 <br>
-<form action ="server_homepage.html">
+<form action ="server_homepage.php">
 <button type = "submit">Return To  The Server Homepage</button>
 </form>	
 	
