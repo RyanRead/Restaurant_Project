@@ -9,8 +9,7 @@
 <button type = "submit"> Add Items</button>
 </form>
 
-<h1>Orders That Need Completing</h1>
-<br>
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -31,7 +30,13 @@ if ($conn->connect_error)
 $query = "SELECT order_id FROM orders WHERE order_complete = false";
 $orders_results = $conn->query($query);
 $rows = $orders_results->num_rows;
-
+if ($rows != 0)
+{
+echo <<<_END
+	<h1>Orders That Need Completing</h1>
+	<br>	
+_END;
+}
 echo <<<_END
 <form action = "view_items_inorder.php" method ="post">
 _END;
