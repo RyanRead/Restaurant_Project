@@ -66,10 +66,6 @@ _END;
 echo <<<_END
  </form>
 _END;
-
-	
-	
-
 }
 
 function displayItemsInOrder($conn, $order_id) 
@@ -77,18 +73,16 @@ function displayItemsInOrder($conn, $order_id)
 	$query = "SELECT item_name FROM menu_items NATURAL JOIN ordered_items WHERE order_id = " . $order_id; 
 	$items_in_order = $conn->query($query);
 	$rows = $items_in_order->num_rows;
-
-	echo "<ul>"
-
+	echo "<ul>";
 	for ($j = 0; $j < $rows; ++$j)
 	{
 		$items_in_order->data_seek($j);
 		$items_in_order_row = $items_in_order->fetch_array(MYSQLI_NUM);
 		$item_name = $items_in_order_row[0];
-	    echo "<li>" . $item_name . "</li>"
+	    echo "<li>" . $item_name . "</li>";
 
 	}
-	echo "</ul>"
+	echo "</ul>";
 }
 ?>
 
