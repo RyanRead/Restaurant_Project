@@ -26,7 +26,6 @@ if ($conn->connect_error)
 } 
 
 $order_id = $_POST["order_id"];
-echo "<h1> Items In Order Number " . $order_id . "<br></h1>"; 
 if (isset($_POST["item_id"]))
 {
 	$item_id = $_POST["item_id"];
@@ -52,11 +51,13 @@ if (isset($_POST["item_id"]))
 	}
 	else
 	{
+		echo "<h1> Items In Order Number " . $order_id . "<br></h1>"; 
 		displayOrderedItems($conn, $order_id);
 	}
 }
 else
 {
+	echo "<h1> Items In Order Number " . $order_id . "<br></h1>"; 
 	displayOrderedItems($conn, $order_id);
 }
 
