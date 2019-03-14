@@ -102,7 +102,7 @@ _END;
 	else
 	{
 echo  <<<_END
-	<td td style="background-color:Red"> <button type = "submit" name = "item_id" value = "$item_id">I am done this item</button></td>
+	<td style="background-color:Red"> <button type = "submit" name = "item_id" value = "$item_id">I am done this item</button></td>
 	</tr>
 _END;
 	}
