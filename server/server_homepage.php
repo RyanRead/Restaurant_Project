@@ -43,7 +43,7 @@ $rows = $complete_orders->num_rows;
 if ($complete_orders->num_rows != 0) //If there is no complete orders then nothing should be printed
 { 
 echo <<<_END
-<strong> Orders Ready To Serve: </strong>
+<h1> Orders Ready To Serve: </h1>
 <br>
 <form action = "" method = "post" >
 _END;
