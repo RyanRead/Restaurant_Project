@@ -41,7 +41,6 @@ if (isset($_POST["item_id"]))
 	if ($count == 0) // Check to see if the order is complete 
 	{
 		echo "<strong> This order is complete </strong>";
-		// add part about making the orders say ready to be server
 		$query = "UPDATE orders SET order_complete = true WHERE order_id =" . $order_id;
 		$insert_order_complete = $conn->query($query);
 		if (!$insert_order_complete) 
@@ -70,7 +69,6 @@ else
 //***************************************************************************************
 function displayOrderedItems($conn, $order_id) {
 $query = "SELECT item_id, item_name, item_complete FROM menu_items NATURAL JOIN ordered_items WHERE order_id = " . $_POST["order_id"];
-//echo $query;
 $ordered_item_results = $conn->query($query);
 $rows = $ordered_item_results->num_rows;
 
@@ -115,5 +113,9 @@ echo <<<_END
 _END;
 }
 ?>
+
+<form action ="chef_mainpage.php">
+<button type = "submit">Return to Chef Main Page</button>
+</form>
 </body>
 </html>
