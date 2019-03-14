@@ -1,0 +1,23 @@
+chefs:
+chefID 		chefName 	password 	serverCode 
+
+ingredients:
+ingredient_id 	ingredient_name 	ingredient_stock 	ingredient_minimum_stock 	ingredient_unit_type
+
+menu_items:
+item_id		item_name	category_id
+
+menu_item_categories:
+category_id		category_name
+
+ordered_items:
+order_id	item_id		item_complete 	
+
+orders:
+order_id 	section_id 	order_complete 
+
+recipes:
+item_id 	ingredient_id 	amount 
+
+sections:
+section_id
