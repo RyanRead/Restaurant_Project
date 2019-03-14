@@ -21,3 +21,50 @@ item_id 	ingredient_id 	amount
 
 sections:
 section_id
+
+
+Ryan Delete This after you insert into database
+*****************************
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Pepsi', 30000000, 2000, 'mLs');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Coke', 30000000, 2000, 'mLs');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Iced Tea', 30000000, 2000, 'mLs');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Water', 30000000, 2000, 'mLs');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Shredded Cheddar Cheese', 5, 2, 'bags');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Corn Chips', 20, 4, 'bags');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('French Fries', 20, 4, 'lbs');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Gravy', 20, 4, 'mLs');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Cheese Curds', 80, 6, 'cups');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Hamburger Buns', 36, 12, 'buns');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Hamburgers', 40, 10, 'hamburgers');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Cheese Slices', 40, 10, 'slices');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Mushrooms', 40, 10, 'cups');
+
+INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_stock, ingredient_unit_type)
+VALUES ('Bacon', 40, 10, 'pieces');
+
+****************************
