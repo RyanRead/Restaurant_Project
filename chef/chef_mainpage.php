@@ -40,7 +40,6 @@ _END;
 echo <<<_END
 <form action = "view_items_inorder.php" method ="post">
 _END;
-$j;
 for ($j = 0; $j < $rows; ++$j)
 {
 	$orders_results->data_seek($j);
