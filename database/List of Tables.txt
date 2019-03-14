@@ -68,3 +68,64 @@ INSERT INTO ingredients (ingredient_name, ingredient_stock, ingredient_minimum_s
 VALUES ('Bacon', 40, 10, 'pieces');
 
 ****************************
+More to Add
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (1, 1, 500);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (7, 2, 500);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (8, 3, 500);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (9, 4, 0);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (2, 5, 0.5);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (2, 6, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (10, 7, 0.25);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (10, 8, 400);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (10, 9, 2);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (3, 10, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (3, 11, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (4, 10, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (4, 11, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (4, 12, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (5, 10, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (5, 11, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (5, 13, 0.25);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (6, 10, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (6, 11, 1);
+
+INSERT INTO recipes (item_id, ingredient_id, amount)
+VALUES (6, 14, 3);
