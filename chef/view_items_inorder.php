@@ -86,6 +86,7 @@ function remove_ingredients_from_stock($conn, $item_id)
 			echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
 		}
 	}
+}
 
 //***************************************************************************************
 // displayOrderedItems
