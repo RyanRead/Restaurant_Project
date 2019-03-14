@@ -40,7 +40,7 @@ if (isset($_POST["order_id"])) //Delete ordered items once they have been served
 $query = "SELECT order_id FROM orders WHERE order_complete = true";
 $complete_orders = $conn->query($query);
 $rows = $complete_orders->num_rows;
-if (num_rows != 0) //If there is no complete orders then nothing should be printed
+if ($complete_orders->num_rows != 0) //If there is no complete orders then nothing should be printed
 { 
 echo <<<_END
 <strong> Orders Ready To Serve: </strong>
