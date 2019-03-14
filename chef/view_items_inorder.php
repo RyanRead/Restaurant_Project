@@ -71,13 +71,13 @@ function remove_ingredients_from_stock($conn, $item_id)
 	{
 		$recipe_results->data_seek($j);
 		$recipe_row = $recipe_results->fetch_array(MYSQLI_NUM);
-		$ingredient_id = recipe_row[0];
+		$ingredient_id = $recipe_row[0];
 		$amount = $recipe_row[1];
 		$query = "SELECT ingredient_stock FROM ingredients WHERE ingredient_id =". $ingredient_id; 
 		$ingredient_results = $conn->query($query);
 		$ingredient_results->data_seek(1);
 		$ingredient_row = $ingredient_results->fetch_array(MYSQLI_NUM);
-		$ingredient_stock = ingredient_row[0];
+		$ingredient_stock = $ingredient_row[0];
 		$new_ingredient_stock = $ingredient_stock - $amount;
 		$query = "UPDATE ingredients SET ingredient_stock = ". $new_ingredient_stock . " WHERE ingredient_id = " . $ingredient_id;
 		$update_ingredients_complete = $conn->query($query);
