@@ -1,11 +1,11 @@
 <html>
 <body style="color:white; background-color:powderblue">
 
-<form action ="view_stock.php"> <!-- Goes to view stock page -- add view_stock.php -->
+<form action ="view_stock.php"> <!-- Goes to view stock page  add view_stock.php -->
 <button type = "submit"> View Stock</button>
 </form>
 
-<form action ="add_items.php"> <!-- Goes to view add items -- add add_items.php -->
+<form action ="add_items.php"> <!-- Goes to view add items  add add_items.php -->
 <button type = "submit"> Add Items</button>
 </form>
 
