@@ -26,6 +26,7 @@ if ($conn->connect_error)
 } 
 
 $order_id = $_POST["order_id"];
+echo "<h1> Items In Order Number " . $order_id . "<br></h1>"; 
 if (isset($_POST["item_id"]))
 {
 	$item_id = $_POST["item_id"];
@@ -38,7 +39,7 @@ if (isset($_POST["item_id"]))
 	$query = "SELECT item_complete FROM ordered_items WHERE item_complete = false AND order_id = " . $order_id;
 	$item_compelte_results = $conn->query($query);
 	$count = $item_compelte_results->num_rows;
-	if ($count == 0)
+	if ($count == 0) // Check to see if the order is complete 
 	{
 		echo "<strong> This order is complete </strong>";
 		// add part about making the orders say ready to be server
@@ -59,8 +60,13 @@ else
 	displayOrderedItems($conn, $order_id);
 }
 
-
-// This function displays all the ordered items if there are still items to be displayed
+//***************************************************************************************
+// displayOrderedItems
+// This Function displays in a table the names of all items in an order along with information about if they are complete or not
+// Parameters: $conn: This parameter is used to maintain the mySQL connection
+//			   $order_id: This parameter is used to pass which orders items should be viewed  
+// Returns: Nothing
+//***************************************************************************************
 function displayOrderedItems($conn, $order_id) {
 $query = "SELECT item_id, item_name, item_complete FROM menu_items NATURAL JOIN ordered_items WHERE order_id = " . $_POST["order_id"];
 //echo $query;
@@ -90,13 +96,13 @@ _END;
 	if ($complete == true) 
 	{	
 echo <<<_END
-		<td style="color:Green">Item Complete</td>	
+		<td style="background-color:Green">Item Complete</td>	
 _END;
 	}
 	else
 	{
 echo  <<<_END
-	<td td style="color:Red"> <button type = "submit" name = "item_id" value = "$item_id">I am done this item</button></td>
+	<td td style="background-color:Red"> <button type = "submit" name = "item_id" value = "$item_id">I am done this item</button></td>
 	</tr>
 _END;
 	}
