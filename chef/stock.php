@@ -180,7 +180,9 @@ _END;
 }
 ?>
 
-
+<form action ="chef_mainpage.php">
+<button type = "submit">Return To Chef Main Page </button>
+</form>
 
 </body>
 </html>
