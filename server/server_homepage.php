@@ -53,7 +53,7 @@ _END;
 		$complete_order_row = $complete_orders->fetch_array(MYSQLI_NUM);
 		$order_id = $complete_order_row[0];
 echo <<<_END
-		<div style="border:1px; border-style:solid; padding:5px; width:50%;">
+		<div style="border:1px; border-style:solid; width:50%;">
 		<h2> Order Number $order_id </h2> <br> 
 _END;
 		displayItemsInOrder($conn, $order_id);
