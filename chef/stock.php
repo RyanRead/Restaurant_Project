@@ -14,6 +14,8 @@ $username = "root";
 $password = "";
 $database = "restaurant_database";
 
+	
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 
@@ -27,7 +29,7 @@ if (isset($_POST["update_stock"]) & isset($_POST["amount"]))
 {
 	updateStock($conn);
 }
-$view_stock;
+$view_stock = 1;
 if (isset($_POST["view_stock"]))
 {
 	$view_stock = $_POST["view_stock"];
