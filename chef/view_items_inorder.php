@@ -79,6 +79,10 @@ function remove_ingredients_from_stock($conn, $item_id)
 		$ingredient_row = $ingredient_results->fetch_array(MYSQLI_NUM);
 		$ingredient_stock = $ingredient_row[0];
 		$new_ingredient_stock = $ingredient_stock - $amount;
+		if ($new_ingredient_stock < 0)
+		{
+			$new_ingredient_stock = 0;	
+		}
 		$query = "UPDATE ingredients SET ingredient_stock = ". $new_ingredient_stock . " WHERE ingredient_id = " . $ingredient_id;
 		$update_ingredients_complete = $conn->query($query);
 		if (!$update_ingredients_complete) 
