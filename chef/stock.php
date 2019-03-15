@@ -24,7 +24,12 @@ if ($conn->connect_error)
 {
     die("Connection failed: " . $conn->connect_error);
 } 
-
+foreach ($_POST as $x => $x_value) 
+{
+	echo #x."<br>".$x_value."<br>";
+}
+	
+	
 if (isset($_POST["update_stock"]) & isset($_POST["amount"]))
 {
 	updateStock($conn);
