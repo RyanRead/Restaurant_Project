@@ -92,7 +92,7 @@ _END;
 	printLowStock($ingredient_results);
 }
 
-$conn->close();
+
 
 function updateStock($conn)
 {
@@ -189,6 +189,7 @@ echo <<<_END
 	</table>
 _END;
 }
+$conn->close();
 ?>
 
 <form action ="chef_mainpage.php">
