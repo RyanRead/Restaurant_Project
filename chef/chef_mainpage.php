@@ -1,7 +1,7 @@
 <html>
 <body style="color:white; background-color:powderblue">
 
-<form action ="stock.php" name = "view_all_stock" value = "1"> <!-- Goes to view stock page  add view_stock.php -->
+<form action ="stock.php" name = "view_stock" value = "1"> <!-- Goes to view stock page  add view_stock.php -->
 <button type = "submit"> View Stock</button>
 </form>
 

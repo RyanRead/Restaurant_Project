@@ -53,27 +53,28 @@ echo <<<_END
 </select>
 <input type="text" name="amount">
 <button type = "submit" name = "update_stock" value = "1">Click Here to Update Your Stock</button></td>
+<input type = "hidden" name = "view_stock" value = "$_POST["view_stock"]">
 </form>
 </div>
 _END;
 
-if (isset($_POST["view_all_stock"]))
+if ($_POST["view_stock"] == 1)
 {
 echo <<<_END
 	<p>View All Ingredients</p>
 	<form action ="" method ="post">
-	<button type = "submit" name = "view_low_stock" value = "2" >View Ingredients With Low Stock</button>
+	<button type = "submit" name = "view_stock" value = "2" >View Ingredients With Low Stock</button>
 	</form>
 	<br>
 _END;
 	printAllStock($ingredient_results);
 }
-else if (isset($_POST["view_low_stock"]))
+else if ($_POST["view_stock"] == 2)
 {
 	echo <<<_END
 	<p>View Low Ingredients</p>
 	<form action ="" method ="post">
-	<button type = "submit" name = "view_all_stock" value = "1" >View All Ingredients Stock</button>
+	<button type = "submit" name = "view_stock" value = "1" >View All Ingredients Stock</button>
 	</form>
 	<br>
 _END;
