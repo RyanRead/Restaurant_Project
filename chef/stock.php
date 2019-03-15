@@ -78,41 +78,6 @@ echo <<<_END
 	</form>
 	<br>
 _END;
-	printAllStock($ingredient_results);
-}
-else if ($view_stock == 2)
-{
-	echo <<<_END
-	<p>View Low Ingredients</p>
-	<form action ="" method ="post">
-	<button type = "submit" name = "view_stock" value = "1" >View All Ingredients Stock</button>
-	</form>
-	<br>
-_END;
-	printLowStock($ingredient_results);
-}
-
-
-
-function updateStock($conn)
-{
-	$ingredient_id = $_POST["ingredient_id"];
-	$query = "SELECT ingredient_stock FROM ingredients WHERE ingredient_id =". $ingredient_id; 
-	$stock_results = $conn->query($query);
-	$stock_results->data_seek(1);
-	$stock_row = $stock_results->fetch_array(MYSQLI_NUM);
-	$current_stock = $stock_row[0];
-	$new_ingredient_stock = $current_stock + $_POST["amount"];
-	$query = "UPDATE ingredients SET ingredient_stock = ". $new_ingredient_stock . " WHERE ingredient_id = " . $ingredient_id;
-	$update_ingredients_complete = $conn->query($query);
-	if (!$update_ingredients_complete) 
-	{
-		echo "UPDATE failed: $query<br>" . $conn->error . "<br><br>";
-	}
-}
-
-function printAllStock($conn)
-{
 	$query = "SELECT * FROM ingredients";
 	$ingredient_results = $conn->query($query);
 	$rows = $ingredient_results->num_rows;	
@@ -154,9 +119,16 @@ echo <<<_END
 	</table>
 _END;
 }
-
-function printLowStock($conn)
+else if ($view_stock == 2)
 {
+echo <<<_END
+	<p>View Low Ingredients</p>
+	<form action ="" method ="post">
+	<button type = "submit" name = "view_stock" value = "1" >View All Ingredients Stock</button>
+	</form>
+	<br>
+_END;
+	
 	$query = "SELECT * FROM ingredients";
 	$ingredient_results = $conn->query($query);
 	$rows = $ingredient_results->num_rows;	
@@ -189,6 +161,26 @@ echo <<<_END
 	</table>
 _END;
 }
+
+
+
+function updateStock($conn)
+{
+	$ingredient_id = $_POST["ingredient_id"];
+	$query = "SELECT ingredient_stock FROM ingredients WHERE ingredient_id =". $ingredient_id; 
+	$stock_results = $conn->query($query);
+	$stock_results->data_seek(1);
+	$stock_row = $stock_results->fetch_array(MYSQLI_NUM);
+	$current_stock = $stock_row[0];
+	$new_ingredient_stock = $current_stock + $_POST["amount"];
+	$query = "UPDATE ingredients SET ingredient_stock = ". $new_ingredient_stock . " WHERE ingredient_id = " . $ingredient_id;
+	$update_ingredients_complete = $conn->query($query);
+	if (!$update_ingredients_complete) 
+	{
+		echo "UPDATE failed: $query<br>" . $conn->error . "<br><br>";
+	}
+}
+
 $conn->close();
 ?>
 
