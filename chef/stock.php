@@ -86,8 +86,8 @@ function updateStock($conn)
 	$query = "SELECT ingredient_stock FROM ingredients WHERE ingredient_id =". $ingredient_id; 
 	$stock_results = $conn->query($query);
 	$stock_results->data_seek(1);
-	$stock_row = $ingredient_results->fetch_array(MYSQLI_NUM);
-	$current_stock = $ingredient_row[0];
+	$stock_row = $stock_results->fetch_array(MYSQLI_NUM);
+	$current_stock = $stock_row[0];
 	$new_ingredient_stock = $current_stock + $_POST["amount"];
 	$query = "UPDATE ingredients SET ingredient_stock = ". $new_ingredient_stock . " WHERE ingredient_id = " . $ingredient_id;
 	$update_ingredients_complete = $conn->query($query);
@@ -97,9 +97,11 @@ function updateStock($conn)
 	}
 }
 
-function printAllStock($ingredient_results)
+function printAllStock($conn)
 {
-	
+	$query = "SELECT * FROM ingredients";
+	$ingredient_results = $conn->query($query);
+	$rows = $ingredient_results->num_rows;	
 echo <<<_END
 	<table style="width:100%">
 	<tr>
@@ -107,7 +109,6 @@ echo <<<_END
 		<th> Ingredient Stock </th>
 	</tr>
 _END;
-	$rows = $ingredient_results->num_rows;
 	for ($j = 0; $j < $rows; ++$j)
 	{
 		$ingredient_results->data_seek($j);
@@ -135,10 +136,16 @@ echo <<<_END
 _END;
 		}
 	}
+echo <<<_END
+	</table>
+_END;
 }
 
-function printLowStock($ingredient_results)
+function printLowStock($conn)
 {
+	$query = "SELECT * FROM ingredients";
+	$ingredient_results = $conn->query($query);
+	$rows = $ingredient_results->num_rows;	
 echo <<<_END
 	<table style="width:100%">
 	<tr>
@@ -146,7 +153,6 @@ echo <<<_END
 		<th> Ingredient Stock </th>
 	</tr>
 _END;
-	$rows = $ingredient_results->num_rows;
 	for ($j = 0; $j < $rows; ++$j)
 	{
 		$ingredient_results->data_seek($j);
@@ -165,6 +171,9 @@ echo <<<_END
 _END;
 		}
 	}
+echo <<<_END
+	</table>
+_END;
 }
 ?>
 
