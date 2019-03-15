@@ -26,7 +26,7 @@ if ($conn->connect_error)
 } 
 foreach ($_POST as $x => $x_value) 
 {
-	echo #x."<br>".$x_value."<br>";
+	echo $x."<br>".$x_value."<br>";
 }
 	
 	
