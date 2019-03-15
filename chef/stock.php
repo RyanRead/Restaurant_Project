@@ -65,7 +65,7 @@ echo <<<_END
 	</form>
 	<br>
 _END;
-printAllStock($ingredient_results);
+	printAllStock($ingredient_results);
 }
 else if (isset($_POST["view_low_stock"]))
 {
@@ -75,14 +75,14 @@ else if (isset($_POST["view_low_stock"]))
 	</form>
 	<br>
 _END;
-printLowStock($ingredient_results);
+	printLowStock($ingredient_results);
 }
 
 $conn->close();
 
 function updateStock($conn)
 {
-	$ingredient_id = $_POST["ingredient_id"]
+	$ingredient_id = $_POST["ingredient_id"];
 	$query = "SELECT ingredient_stock FROM ingredients WHERE ingredient_id =". $ingredient_id; 
 	$stock_results = $conn->query($query);
 	$stock_results->data_seek(1);
