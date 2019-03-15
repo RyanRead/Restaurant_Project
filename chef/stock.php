@@ -27,6 +27,7 @@ if (isset($_POST["update_stock"]) & isset($_POST["amount"]))
 {
 	updateStock($conn);
 }
+$view_stock;
 if (isset($_POST["view_stock"]))
 {
 	$view_stock = $_POST["view_stock"];
