@@ -18,7 +18,7 @@ if ($conn->connect_error)
     die("Connection failed: " . $conn->connect_error);
 } 
 
-if (isset($_POST["new_categorey_name"])
+if (isset($_POST["new_categorey_name"]))
 {
 	$new_categorey_name = $_POST["new_categorey_name"];
 	$query = "INSERT INTO menu_item_categories (category_name) VALUES (".$new_categorey_name.")";
