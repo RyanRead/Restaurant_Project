@@ -93,7 +93,7 @@ function updateStock($conn)
 	$update_ingredients_complete = $conn->query($query);
 	if (!$update_ingredients_complete) 
 	{
-		echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
+		echo "UPDATE failed: $query<br>" . $conn->error . "<br><br>";
 	}
 }
 

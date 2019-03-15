@@ -28,13 +28,13 @@ if (isset($_POST["order_id"])) //Delete ordered items once they have been served
 	$delete_order_complete = $conn->query($query);
 	if (!$delete_order_complete) 
 	{
-		echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
+		echo "DELETE failed: $query<br>" . $conn->error . "<br><br>";
 	}
 	$query = "DELETE FROM ordered_items WHERE order_id = " . $order_id;
 	$delete_order_items_complete = $conn->query($query);
 	if (!$delete_order_items_complete) 
 	{
-		echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
+		echo "DELETE failed: $query<br>" . $conn->error . "<br><br>";
 	}
 }
 $query = "SELECT order_id FROM orders WHERE order_complete = true";
