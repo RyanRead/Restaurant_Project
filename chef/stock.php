@@ -58,7 +58,7 @@ echo <<<_END
 </div>
 _END;
 
-if ($_POST["view_stock"] == 1)
+if ($view_stock == 1)
 {
 echo <<<_END
 	<p>View All Ingredients</p>
@@ -69,7 +69,7 @@ echo <<<_END
 _END;
 	printAllStock($ingredient_results);
 }
-else if ($_POST["view_stock"] == 2)
+else if ($view_stock == 2)
 {
 	echo <<<_END
 	<p>View Low Ingredients</p>
