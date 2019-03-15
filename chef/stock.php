@@ -115,7 +115,7 @@ echo <<<_END
 	</table>
 _END;
 }
-else if ($view_stock == 2)
+elseif ($view_stock == 2)
 {
 echo <<<_END
 	<p>View Low Ingredients</p>
