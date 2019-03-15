@@ -27,7 +27,10 @@ if (isset($_POST["update_stock"]) & isset($_POST["amount"]))
 {
 	updateStock($conn);
 }
-$view_stock = $_POST['view_stock'];
+if (isset($_POST["view_stock"]))
+{
+	$view_stock = $_POST["view_stock"];
+}
 $query = "SELECT * FROM ingredients";
 $ingredient_results = $conn->query($query);
 $rows = $ingredient_results->num_rows;
