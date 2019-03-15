@@ -5,7 +5,7 @@
 <button type = "submit"> View Stock</button>
 </form>
 
-<form action ="add_items.php"> <!-- Goes to view add items  add add_items.php -->
+<form action ="add_items.html"> <!-- Goes to view add items  add add_items.php -->
 <button type = "submit"> Add Items</button>
 </form>
 

@@ -52,7 +52,7 @@ echo <<<_END
 _END;
 ?>
 
-<form action ="add_items.php">
+<form action ="add_items.html">
 <button type = "submit">Return To Previous Page</button>
 </form>
 </body>
