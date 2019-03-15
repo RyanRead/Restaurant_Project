@@ -60,6 +60,7 @@ _END;
 if (isset($_POST["view_all_stock"]))
 {
 echo <<<_END
+	<p>View All Ingredients</p>
 	<form action ="" method ="post">
 	<button type = "submit" name = "view_low_stock" value = "2" >View Ingredients With Low Stock</button>
 	</form>
@@ -70,6 +71,7 @@ _END;
 else if (isset($_POST["view_low_stock"]))
 {
 	echo <<<_END
+	<p>View Low Ingredients</p>
 	<form action ="" method ="post">
 	<button type = "submit" name = "view_all_stock" value = "1" >View All Ingredients Stock</button>
 	</form>
