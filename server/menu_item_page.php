@@ -54,7 +54,7 @@ _END;
 	}
 	else
 	{
-		echo $item_name." Is Out Of Stock! <br>";
+		echo " " . $item_name. " [Out Of Stock!] <br>";
 	}
 	$previous = $item_category;
 }
