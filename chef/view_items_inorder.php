@@ -35,7 +35,7 @@ if (isset($_POST["item_id"]))
 	{
 		echo "UPDATE failed: $query<br>" . $conn->error . "<br><br>";
 	}
-	remove_ingredients_from_stock($conn, $item_id);
+	removeIngredientsFromStock($conn, $item_id);
 	$query = "SELECT item_complete FROM ordered_items WHERE item_complete = false AND order_id = " . $order_id;
 	$item_compelte_results = $conn->query($query);
 	$count = $item_compelte_results->num_rows;
@@ -61,8 +61,14 @@ else
 	displayOrderedItems($conn, $order_id);
 }
 
-
-function remove_ingredients_from_stock($conn, $item_id)
+//***************************************************************************************
+// removeIngredientsFromStock
+// This function updates the database to remove ingredients from stock when they are completed
+// Parameters: $conn: This parameter is used to maintain the mySQL connection
+//			   $item_id: This parameter is used to pass which item should have their ingredients updated 
+// Returns: Nothing
+//***************************************************************************************
+function removeIngredientsFromStock($conn, $item_id)
 {
 	$query = "SELECT ingredient_id, amount FROM recipes WHERE item_id = " . $item_id;
 	$recipe_results = $conn->query($query);
