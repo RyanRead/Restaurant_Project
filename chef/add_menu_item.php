@@ -86,7 +86,7 @@ for ($i = 0; $i < $rows; ++$i)
 echo <<<_END
 	<input type = "checkbox" name = "$name" value = "$value"/> <input type="number" step="0.01" name="$name_amount" /> 
 _END;
-	echo $ingredients_row[1]."<br>";
+	echo $ingredients_row[1]." (". $ingredients_row[4] .")<br>";
 }
 
 //echo " <button type='button'>Add Ingredient</button><br><br>";
