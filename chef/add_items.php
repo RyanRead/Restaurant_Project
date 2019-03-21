@@ -41,7 +41,7 @@ if ($conn->connect_error)
     die("Connection failed: " . $conn->connect_error);
 } 
 
-if ((isset($_POST["add_table"]))
+if (isset($_POST["add_table"]))
 {
 	$query = "INSERT INTO sections () VALUES ()";
 	$insert_section = $conn->query($query);
