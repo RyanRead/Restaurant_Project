@@ -43,7 +43,7 @@ if ($conn->connect_error)
 
 if ((isset($_POST["add_table"]))
 {
-	$query = "INSERT INTO sections () VALUES ('')";
+	$query = "INSERT INTO sections () VALUES ()";
 	$insert_section = $conn->query($query);
 	if (!$insert_section) 
 	{
