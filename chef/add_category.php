@@ -50,6 +50,7 @@ echo <<<_END
 	 <input type="submit" value="Submit">
 </form>
 _END;
+$conn->close();
 ?>
 
 <form action ="add_items.html">
