@@ -1,0 +1,1 @@
+document.getElementById("addStockForm").addEventListener("submit", addMoreStockCheck, false);

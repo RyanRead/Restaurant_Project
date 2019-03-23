@@ -1,0 +1,1 @@
+document.getElementById("makeOrderForm").addEventListener("submit", addItemsToOrderCheck, false);

@@ -1,0 +1,1 @@
+document.getElementById("newCategoryForm").addEventListener("submit", addNewCategoryCheck, false);

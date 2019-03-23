@@ -1,0 +1,1 @@
+document.getElementById("addMenuItemForm").addEventListener("submit", addMenuCheck, false);
