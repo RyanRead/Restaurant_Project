@@ -1,8 +1,93 @@
-<html>
-<body style="color:white; background-color:powderblue">
-
+<?php
+    session_start();
+    $_SESSION["table_count"] = 0;
+    $errorBox = false;
+?>
 
 <?php
+if (isset($_POST["submitted"]) && $_POST["submitted"])
+{
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "restaurant_database";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) 
+{
+    die("Connection failed: " . $conn->connect_error);
+} 
+$category;
+$name;
+$item;
+
+$query = "SELECT * FROM menu_items ORDER BY category_id";
+$menu_item_results = $conn->query($query);
+$rows = $menu_item_results->num_rows;
+$rows = $rows + 1;
+
+foreach ($_POST as $x => $x_value) 
+{
+	
+	if($x == "new_item_name")
+	{
+		$name = $x_value;
+		continue;
+	}
+	elseif($x == "category")
+	{
+		$category = $x_value;
+		continue;
+	}
+	elseif($x_value != null)
+	{
+		if(strlen($x) < 8)
+		{
+			$item = $x_value;
+		}
+		else
+		{
+			$query = "INSERT INTO recipes (item_id, ingredient_id, amount) VALUES ($rows, $item, $x_value)";
+			$insert_recipe = $conn->query($query);
+			if (!$insert_recipe) 
+			{
+				echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
+			}
+		}
+	}
+}
+
+
+
+$query = "INSERT INTO menu_items (item_name, category_id) VALUES ('$name', $category)";
+$insert_menu_item = $conn->query($query);
+if (!$insert_menu_item) 
+{
+	echo "INSERT failed: $query<br>" . $conn->error . "<br><br>";
+}
+
+$conn->close();
+}
+?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add New Category</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+
+    <script type="text/javascript" src="../javascript/validator.js"> </script>
+</head>
+
+<body class="bgChef">
+    <h1 class="newMenuItem">Add New Menu Item</h1>
+
+    <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -23,11 +108,8 @@ $menu_item_results = $conn->query($query);
 $rows = $menu_item_results->num_rows;
 $previous = -1;
 
-echo <<<_END
-<form action = "update_menu.php" method ="post">
-_END;
-
-echo "M E N U";
+    
+echo "<div class='menuContainer'><h1 id='listMenu'>Current Menu</h1>";
 
 $j;
 for ($j = 0; $j < $rows; ++$j)
@@ -44,17 +126,22 @@ for ($j = 0; $j < $rows; ++$j)
 		$category_results = $conn->query($query);
 		$category_results->data_seek(1);
 		$category_row = $category_results->fetch_array(MYSQLI_NUM);
-		echo "<br><strong>".$category_row[0]."</strong><br>";
+		echo "<strong class='underLine'>".$category_row[0]."</strong><br>";
 	}
 	
 	$value = $menu_item_row[0]; //Menu item ID
 	echo "- ". $menu_item_row[1]."<br>";
 	$previous = $item_category;
 }
-echo "<br>ADD MENU ITEM<br><br>";
 
 echo <<<_END
-New Item: <input type='text' name='new_item_name'><br><br>
+</div>
+<div class="menuIngredientsContainer">
+<form action = "add_menu_item.php" method ="post" id="addMenuItemForm">
+_END;
+
+echo <<<_END
+New Item: <input type='text' name="new_item_name" id='item_name'><br><br>
 _END;
 
 
@@ -75,7 +162,6 @@ echo "</select><br><br>Ingredients:<br>";
 $query = "SELECT * FROM ingredients ORDER BY ingredient_id";
 $ingredients_results = $conn->query($query);
 $rows = $ingredients_results->num_rows;
-echo "";
 for ($i = 0; $i < $rows; ++$i)
 {
 	$ingredients_results->data_seek($i);
@@ -89,17 +175,38 @@ _END;
 	echo $ingredients_row[1]." (". $ingredients_row[4] .")<br>";
 }
 
-//echo " <button type='button'>Add Ingredient</button><br><br>";
-
-
 
 echo <<<_END
-<input type = "submit" value = "Submit">
+<br>
+<input type="hidden" name="submitted" value="1"/>
+<input class="submitButton" type = "submit" value = "Submit">
 </form>
+
+<script type="text/javascript" src="../javascript/validation_addMenuItem.js"> </script>
+</div>
+
 _END;
 $conn->close();
 
 ?>
 
+    <div class="errAddMenuBox errText hide" id="errorNewMenuBox">
+        <ul id="errorNewMenuList"></ul>
+    </div>
+    
+    
+    <div class="navBar">
+        <form action="add_items.php">
+            <button class="returnButton" type="submit">Back</button>
+        </form>
+
+        <form action="chef_mainpage.php">
+            <button class="backChefButton" type="submit">Chef Main</button>
+        </form>
+
+        <div class="bgChefParallax"></div>
+    </div>
+
 </body>
+
 </html>

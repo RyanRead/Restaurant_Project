@@ -1,21 +1,27 @@
-<html>
-<body style="color:white; background-color:powderblue">
-<h1> Stock </h1>
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-</style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-<?php
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock Page</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+
+    <script type="text/javascript" src="../javascript/validator.js"> </script>
+</head>
+
+<body class="bgStock">
+
+
+
+
+    <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "restaurant_database";
 
 	
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 
@@ -39,11 +45,10 @@ $query = "SELECT * FROM ingredients";
 $ingredient_results = $conn->query($query);
 $rows = $ingredient_results->num_rows;
 echo <<<_END
-<div style="border:1px; border-style:solid; width:50%;">
-<h2> Bought More Stock? </h2>
-<strong> How much more did you buy? </strong>
-<form action = "" method = "post">
-<select name="ingredient_id">
+<div class="moreStockContainer">
+<form action = "" method = "post" id="addStockForm">
+<p class="addStock">Add to stock</p>
+<select class="selectStock" name="ingredient_id">
 _END;
 for ($j = 0; $j < $rows; ++$j)
 {
@@ -58,9 +63,10 @@ _END;
 }
 echo <<<_END
 </select>
-<input type="text" name="amount">
-<button type = "submit" name = "update_stock" value = "1">Click Here to Update Your Stock</button></td>
+<input class="stockFields" type="text" name="amount" placeholder="amount" id="add_stock">
+<button class="updateStockButton" type = "submit" name = "update_stock" value = "1">Update Stock</button></td>
 <input type = "hidden" name = "view_stock" value = "$view_stock">
+<script type="text/javascript" src="../javascript/validation_addMoreStock.js"> </script>
 </form>
 </div>
 _END;
@@ -68,21 +74,17 @@ _END;
 if ($view_stock == 1)
 {
 echo <<<_END
-	<p>View All Ingredients</p>
-	<form action ="" method ="post">
-	<button type = "submit" name = "view_stock" value = "2" >View Ingredients With Low Stock</button>
+	<p class="inventoryTitle">Viewing all Ingredients</p>
+    <form action ="" method ="post">
+	<button class="viewDifStockButton" type = "submit" name = "view_stock" value = "2" >View Ingredients With Low Stock</button>
 	</form>
-	<br>
+	
 _END;
 	$query = "SELECT * FROM ingredients";
 	$ingredient_results = $conn->query($query);
 	$rows = $ingredient_results->num_rows;	
 echo <<<_END
-	<table style="width:100%">
-	<tr>
-		<th> Ingredient Name </th> 
-		<th> Ingredient Stock </th>
-	</tr>
+	<table class="stockTable">
 _END;
 	for ($j = 0; $j < $rows; ++$j)
 	{
@@ -95,9 +97,9 @@ _END;
 		if ($ingredient_stock < $ingredient_minimum_stock)
 		{
 echo <<<_END
-			<tr style="background-color:Red">
-				<td> $ingredient_name </td>
-				<td> $ingredient_stock $ingredient_unit_type </td>
+			<tr id="lowStock">
+				<td id="lowStock"> $ingredient_name </td>
+				<td id="lowStock"> $ingredient_stock $ingredient_unit_type </td>
 			</tr>
 _END;
 		}
@@ -118,9 +120,9 @@ _END;
 elseif ($view_stock == 2)
 {
 echo <<<_END
-	<p>View Low Ingredients</p>
+	<p class="inventoryTitle">Viewing Low Ingredients</p>
 	<form action ="" method ="post">
-	<button type = "submit" name = "view_stock" value = "1" >View All Ingredients Stock</button>
+	<button class="viewDifStockButton" type = "submit" name = "view_stock" value = "1" >View All Ingredients Stock</button>
 	</form>
 	<br>
 _END;
@@ -129,11 +131,7 @@ _END;
 	$ingredient_results = $conn->query($query);
 	$rows = $ingredient_results->num_rows;	
 echo <<<_END
-	<table style="width:100%">
-	<tr>
-		<th> Ingredient Name </th> 
-		<th> Ingredient Stock </th>
-	</tr>
+	<table class="stockTable">
 _END;
 	for ($j = 0; $j < $rows; ++$j)
 	{
@@ -146,9 +144,9 @@ _END;
 		if ($ingredient_stock < $ingredient_minimum_stock)
 		{
 echo <<<_END
-			<tr style="background-color:Red">
-				<td> $ingredient_name </td>
-				<td> $ingredient_stock $ingredient_unit_type </td>
+			<tr class="lowStock">
+				<td id="lowStock"> $ingredient_name </td>
+				<td id="lowStock"> $ingredient_stock $ingredient_unit_type </td>
 			</tr>
 _END;
 		}
@@ -180,9 +178,16 @@ function updateStock($conn)
 $conn->close();
 ?>
 
-<form action ="chef_mainpage.php">
-<button type = "submit">Return To Chef Main Page </button>
-</form>
+    <div class="errAddStockBox errText hide" id="errorAddStockBox">
+        <ul id="errorAddStockList"></ul>
+    </div>
+    
+    <div class="navBar">
+        <form action="chef_mainpage.php">
+            <button class="returnButton" type="submit">Back</button>
+        </form>
+    </div>
 
 </body>
+
 </html>

@@ -1,15 +1,17 @@
 <html>
-<body style="color:white; background-color:powderblue">
 
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-</style>
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock Page</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+
+</head>
 
 
-<?php
+
+<body class="bgChef">
+    <?php
 
 $servername = "localhost";
 $username = "root";
@@ -41,23 +43,27 @@ if (isset($_POST["item_id"]))
 	$count = $item_compelte_results->num_rows;
 	if ($count == 0) // Check to see if the order is complete 
 	{
-		echo "<strong> This order is complete </strong>";
 		$query = "UPDATE orders SET order_complete = true WHERE order_id =" . $order_id;
 		$insert_order_complete = $conn->query($query);
 		if (!$insert_order_complete) 
 		{
 			echo "UPDATE failed: $query<br>" . $conn->error . "<br><br>";
 		}
+        
+        //Once order is complete redirect automatically back to Chefs Main Page.
+        header("Location: chef_mainpage.php");
+        $db->close();
+        exit();
 	}
 	else
 	{
-		echo "<h1> Items In Order Number " . $order_id . "<br></h1>"; 
+		echo "<h1 class='orderTitle'>Order Number: " . $order_id . "<br></h1>"; 
 		displayOrderedItems($conn, $order_id);
 	}
 }
 else
 {
-	echo "<h1> Items In Order Number " . $order_id . "<br></h1>"; 
+	echo "<h1 class='orderTitle'>Order Number: " . $order_id . "<br></h1>"; 
 	displayOrderedItems($conn, $order_id);
 }
 
@@ -112,10 +118,10 @@ $rows = $ordered_item_results->num_rows;
 
 echo <<<_END
 <form action = "" method ="post">
-<table style="width:100%">
+<table class="orderTable">
 <tr>
 	<th> Item Name </th> 
-	<th> Item Complete</th>
+	<th> Item Status</th>
 </tr>
 _END;
 
@@ -133,13 +139,13 @@ _END;
 	if ($complete == true) 
 	{	
 echo <<<_END
-		<td style="background-color:Green">Item Complete</td>	
+		<td id="doneItem" >Item Complete</td>	
 _END;
 	}
 	else
 	{
 echo  <<<_END
-	<td style="background-color:Red"> <button type = "submit" name = "item_id" value = "$item_id">I am done this item</button></td>
+	<td id="notDone"> <button class="doneButton" type = "submit" name = "item_id" value = "$item_id">Click to finish item</button></td>
 	</tr>
 _END;
 	}
@@ -152,8 +158,9 @@ _END;
 }
 ?>
 
-<form action ="chef_mainpage.php">
-<button type = "submit">Return to Chef Main Page</button>
-</form>
+    <form action="chef_mainpage.php">
+        <button class="returnButton" type="submit">Back</button>
+    </form>
 </body>
+
 </html>

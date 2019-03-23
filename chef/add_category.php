@@ -1,14 +1,29 @@
-<html>
-<body style="color:white; background-color:powderblue">
-<h1> Add New Category <h1> <br>
-<h2> Current Categories </h2> <br>
-<ul>
 <?php
+    session_start();
+    $_SESSION["table_count"] = 0;
+?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add New Category</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+
+    <script type="text/javascript" src="../javascript/validator.js"> </script>
+</head>
+
+<body class="bgChef">
+    <h1 class="newCategory"> Add New Category </h1> <br>
+
+
+    <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "restaurant_database";
-
+echo "  <div class='categoryContainer'><h1 class='listCategory'>Current Categories</h1><ul>";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 
@@ -44,17 +59,32 @@ _END;
 }
 echo <<<_END
 </ul>
+</div>
+<div class='addCategoryForm'>
 <h2>Enter the Name of the New Category </h2>
-<form action ="" method = "post">
-	 <input type="text" name="new_categorey_name"><br>
-	 <input type="submit" value="Submit">
+<form action ="" method = "post" id="newCategoryForm">
+	 <input type="text" name="new_categorey_name" id="category_name"><br><br>
+	 <input class="submitButton" type="submit" value="Submit">
 </form>
+<script type="text/javascript" src="../javascript/validation_addNewCategory.js"> </script>
+</div>
 _END;
-$conn->close();
 ?>
+    <div class="navBar">
+        <form action="add_items.php">
+            <button class="returnButton" type="submit">Back</button>
+        </form>
 
-<form action ="add_items.html">
-<button type = "submit">Return To Previous Page</button>
-</form>
+        <form action="chef_mainpage.php">
+            <button class="backChefButton" type="submit">Chef Main</button>
+        </form>
+    </div>
+
+    <div class="errAddCategoryBox errText hide" id="errorNewCategoryBox">
+        <ul id="errorNewCategoryList"></ul>
+    </div>
+
+    <div class="bgChefParallax"></div>
 </body>
+
 </html>

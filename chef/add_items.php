@@ -1,32 +1,29 @@
 <html>
-<body style="color:white; background-color:powderblue">
 
-<form action ="add_category.php"> 
-<button type = "submit"> Add Category</button>
-</form>
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Items Selection</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+</head>
 
-<br>
-
-<form action ="add_menu_item.php"> 
-<button type = "submit"> Add Menu Item</button>
-</form>
-
-<br>
-
-<form action ="add_ingredient.php"> 
-<button type = "submit"> Add Ingredient</button>
-</form>
-
-<br>
-
-<form action ="" method = "post"> 
-<button type = "submit" name = "add_table" value = "1"> Click Here to Add One More Table </button>
-</form>
-
-<br>
-
-
-<?php
+<body class="bgChef">
+    <div class="addItemButtonMenu">
+    <form action="add_menu_item.php">
+        <button class="addMenuItemButton" type="submit"> Add Menu Item</button>
+    </form>
+    <form action="add_category.php">
+        <button class="addCategoryButton" type="submit"> Add Category</button>
+    </form>
+    <form action="add_ingredient.php">
+        <button class="addIngredientButton" type="submit"> Add Ingredient</button>
+    </form>
+    <form action="" method="post">
+        <button class="addTableButton" type="submit" name="add_table" value="1">Add One Table</button>
+    </form>
+    </div>
+    <?php
+    session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -51,15 +48,27 @@ if (isset($_POST["add_table"]))
 	}
 	else
 	{
-		echo "You Added One Table";
+        $_SESSION["table_count"] += 1;
+        $table_count = $_SESSION["table_count"];
+        if($table_count > 1)
+        {
+        ?>
+    <div class="numTablesText">You've Added <?=$table_count?> Table's </div>
+    <?php }
+        else
+        {?>
+    <div class="numTablesText">You've Added <?=$table_count?> Table </div>
+    <?php }
 	}
 }
 $conn->close();
 ?>
-
-<form action ="chef_mainpage.php"> 
-<button type = "submit"> Return to Chef Main Page</button>
-</form>
+    <div class="navBar">
+        <form action="chef_mainpage.php">
+            <button class="returnButton" type="submit">Back</button>
+        </form>
+    </div>
 
 </body>
+
 </html>
