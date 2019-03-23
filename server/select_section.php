@@ -1,8 +1,16 @@
 <html>
-<body style="color:white; background-color:powderblue">
 
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Items Selection</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+</head>
 
-<?php
+<body class="bgChef">
+    <h1 class="chooseTable">Choose A Table</h1>
+
+    <?php
 //*****************
 // This allows the server to select a table to serve to 
 //***************
@@ -29,7 +37,9 @@ $section_results = $conn->query($query);
 $rows = $section_results->num_rows;
 
 echo <<<_END
+<div class="tableListContainer">
 <form action = "menu_item_page.php" method ="post">
+<select name="section_id">
 _END;
 for ($j = 0; $j < $rows; ++$j)
 {
@@ -39,17 +49,25 @@ for ($j = 0; $j < $rows; ++$j)
 	$value = $section_row[0];
 	 //Menu item ID
 echo <<<_END
-	<input type = "radio" name = "section_id" value = "$value">
+    <option value="$value">Table $value</option>
+
 _END;
-	echo "Table ". $value . "<br>";
 }
 echo <<<_END
-<input type = "submit" value = "Submit">
+    </select><br><br>
+<input class="chooseTableSubmit" type = "submit" value = "Submit">
 </form>
+</div>
 _END;
 $conn->close();
 
 ?>
+    <div class="navBar">
 
+        <form action="server_homepage.php">
+            <button class="returnButton" type="submit">Back</button>
+        </form>
+    </div>
 </body>
+
 </html>

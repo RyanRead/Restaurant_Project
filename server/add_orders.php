@@ -1,7 +1,16 @@
 <html>
-<body style="color:white; background-color:powderblue">
 
-<?php 
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Making Order</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+</head>
+
+<body class="bgChef">
+    <h1 class="orderSuccess">ORDER SUCCESFUL</h1>
+
+    <?php 
 
 $servername = "localhost";
 $username = "root";
@@ -51,7 +60,7 @@ else
 	}
 	if ($insert_successful)
 	{
-		echo "<br><strong> You Have Successfully Ordered: </strong><br><br>";
+		echo "<div class='successfulOrderContainer'><h2 class='successfulTitle'><strong>Successfully Ordered: </strong></h2>";
 		$query = "SELECT item_name FROM menu_items NATURAL JOIN ordered_items WHERE order_id =".$order_id; 
 		$order_results = $conn->query($query);
 		$rows = $order_results->num_rows;
@@ -63,19 +72,21 @@ else
 		}
 	}
 	
+    echo "</div>"
 	
 	
 
 
 ?>
-	
-<form action ="select_section.php">
-<button type = "submit">Make Another Order</button>
-</form>
-<br>
-<form action ="server_homepage.php">
-<button type = "submit">Return To  The Server Homepage</button>
-</form>	
-	
+
+    <form action="select_section.php">
+        <button class="bigAnotherOrderButton" type="submit">Make Another Order</button>
+    </form>
+
+    <form action="server_homepage.php">
+        <button class="bigServerButton" type="submit">Server Main</button>
+    </form>
+
 </body>
+
 </html>

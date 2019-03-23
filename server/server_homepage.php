@@ -1,12 +1,21 @@
-<html> 
-<body style="color:white; background-color:powderblue">
-<form action ="select_section.php">
-<button type = "submit">Make An Order</button>
-</form>
+<html>
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Server Homepage</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+</head>
 
-<br>
+<body class="bgChef">
+    <h1 class="serverTitle">WELCOME SERVER</h1>
+    <form action="select_section.php">
+        <button class="makeOrderButton" type="submit">Make Order</button>
+    </form>
+    <form action="../index.html">
+        <input class="logoutButton" type="submit" value="Logout" />
+    </form>
 
-<?php
+    <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -43,8 +52,9 @@ $rows = $complete_orders->num_rows;
 if ($complete_orders->num_rows != 0) //If there is no complete orders then nothing should be printed
 { 
 echo <<<_END
-<h1> Orders Ready To Serve: </h1>
-<br>
+<h1 class="orderReadyTitle"> Orders Ready To Serve </h1>
+<div class="doneOrdersContainer">
+
 <form action = "" method = "post" >
 _END;
 	for ($j = 0; $j < $rows; ++$j)
@@ -53,18 +63,17 @@ _END;
 		$complete_order_row = $complete_orders->fetch_array(MYSQLI_NUM);
 		$order_id = $complete_order_row[0];
 echo <<<_END
-		<div style="border:1px; border-style:solid; width:50%;">
-		<h2> Order Number $order_id </h2> <br> 
+		<h2 class="orders"> Order Number $order_id </h2>
 _END;
 		displayItemsInOrder($conn, $order_id);
 echo <<<_END
 		<br>
-		<button type = "submit" name = "order_id" value = "$order_id">I have served this order</button>
-		</div>
+		<button class="orderServedButton" type = "submit" name = "order_id" value = "$order_id">Order Served</button>
 _END;
 	}
 echo <<<_END
  </form>
+ </div>
 _END;
 }
 

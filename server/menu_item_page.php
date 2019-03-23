@@ -1,8 +1,18 @@
 <html>
-<body style="color:white; background-color:powderblue">
+
+<head>
+    <!--meta charset="utf-8"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Making Order</title>
+    <link rel="stylesheet" type="text/css" href="../style/quickServeStyle.css" />
+    <script type="text/javascript" src="../javascript/validator.js"> </script>
+</head>
+
+<body class="bgChef">
+    <h1 class="makeOrder">Making Order</h1>
 
 
-<?php
+    <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -23,7 +33,8 @@ $menu_item_results = $conn->query($query);
 $rows = $menu_item_results->num_rows;
 $previous = -1;
 echo <<<_END
-<form action = "add_orders.php" method ="post">
+<div class="chooseOrderContainer">
+<form action = "add_orders.php" method ="post" id="makeOrderForm">
 _END;
 $j;
 for ($j = 0; $j < $rows; ++$j)
@@ -40,7 +51,7 @@ for ($j = 0; $j < $rows; ++$j)
 		$category_results = $conn->query($query);
 		$category_results->data_seek(1);
 		$category_row = $category_results->fetch_array(MYSQLI_NUM);
-		echo "<br><strong>".$category_row[0]."</strong><br>";
+		echo "<div class='underLine2'><strong>".$category_row[0]."</strong></div>";
 	}
 	$displayItem = checkForEnoughIngredients($conn, $item_id);	
 	if ($displayItem) //This if-statement determines if the item should be displayed as orderable or out of stock
@@ -54,17 +65,20 @@ _END;
 	}
 	else
 	{
-		echo " " . $item_name. " [Out Of Stock!] <br>";
+		echo "<div class='outOfStock'>" . $item_name. " [Out Of Stock!] <br></div>";
 	}
 	$previous = $item_category;
 }
 
 
 echo <<<_END
+<br>
 <input type ="hidden" name="section_id" value="$section_id">
-<input type = "submit" value = "Submit">
-<input type="reset">
+<input class="submitOrderButton" type = "submit" value = "Place Order">
+<input class="resetOrderButton" type="reset" value="Reset Order">
+<script type="text/javascript" src="../javascript/validation_AddToOrder.js"> </script>
 </form>
+</div>
 _END;
 $conn->close();
 
@@ -103,5 +117,19 @@ function checkForEnoughIngredients($conn, $item_id)
 
 ?>
 
+    <div class="errMakeOrderBox errText hide" id="errorNewOrderBox">
+        <ul id="errorMewOrderList"></ul>
+    </div>
+    
+    <div class="navBar">
+        <form action="select_section.php">
+            <button class="returnButton" type="submit">Back</button>
+        </form>
+
+        <form action="server_homepage.php">
+            <button class="backServerButton" type="submit">Server Main</button>
+        </form>
+    </div>
 </body>
+
 </html>
