@@ -108,7 +108,7 @@ function addIngredientsCheck(event) {
     var d = elements[3].value;
 
     var result = true;
-    var nameCheck = /^[a-zA-Z]+$/;
+    var nameCheck = /^([a-zA-Z]+ *[a-zA-Z]*)+$/;
 
     document.getElementById("name_of_ingredient").classList.remove("errBorder");
     document.getElementById("in_stock").classList.remove("errBorder");
@@ -201,7 +201,7 @@ function addMenuCheck(event) {
     var a = elements[0].value;
 
     var result = true;
-    var nameCheck = /^[a-zA-Z]+$/;
+    var nameCheck = /^([a-zA-Z]+ *[a-zA-Z]*)+$/;
 
     document.getElementById("item_name").classList.remove("errBorder");
     document.getElementById("errorNewMenuBox").classList.add("hide");
@@ -282,7 +282,7 @@ function addNewCategoryCheck(event) {
     var a = elements[0].value;
 
     var result = true;
-    var nameCheck = /^[a-zA-Z]+$/;
+    var nameCheck = /^([a-zA-Z]+ *[a-zA-Z]*)+$/;
 
     document.getElementById("category_name").classList.remove("errBorder");
     document.getElementById("errorNewCategoryBox").classList.add("hide");
@@ -380,7 +380,6 @@ function addItemsToOrderCheck(event) {
     var checkList = document.forms[0];
 
     var result = true;
-    var nameCheck = /^[a-zA-Z]+$/;
 
     document.getElementById("errorNewOrderBox").classList.add("hide");
 
