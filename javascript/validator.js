@@ -400,7 +400,7 @@ function addItemsToOrderCheck(event) {
 
     if (!isChecked) {
         var node = document.createElement("li");
-        var textNode = document.createTextNode("Must check at least one ingredient.");
+        var textNode = document.createTextNode("Must check at least menu item.");
         node.appendChild(textNode);
         document.getElementById("errorMewOrderList").appendChild(node);
         document.getElementById("errorNewOrderBox").classList.remove("hide");
